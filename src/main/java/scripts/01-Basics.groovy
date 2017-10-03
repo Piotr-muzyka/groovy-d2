@@ -41,8 +41,13 @@ class User {
        println "Hi my name is ${firstName} ${lastName}"
    }
 
+
+/*    equals - checks if two Objects are equal based on their state (values).
+      We are not talking about references - we are not checking if that is the same object.
+ */
+
     boolean equals(o) {
-        if (this.is(o)) return true
+        if (this.is(o)) return true // compare to itself - must return true since the state will be the same
         if (getClass() != o.class) return false
 
         User user = (User) o
@@ -52,6 +57,13 @@ class User {
 
         return true
     }
+
+/*    hashCode - state of the object (field values ) is translated into one value - hashCode.
+      It can be used in collections, allowing fast access to the elements in a collection - like index.
+      especially useful when working on large collections
+ */
+
+
 
     int hashCode() {
         int result
@@ -76,17 +88,17 @@ testUser.firstName = 'Jan'
 testUser.lastName = 'Kowalski'
 testUser.sayHello()
 
-User userThree = userTwo
+User userThree = userTwo // we are referencing userTwo  , we are changing the name of userTwo
 userThree.lastName = 'Kowalska'
 userThree.sayHello()
 userTwo.sayHello()
 
 int someValue = 7
-int otherValue = someValue
+int otherValue = someValue // since it is a primitive type we are just copying the value
 
 otherValue++
-
 println someValue
+println otherValue
 
 byte byteValue = 2
 
@@ -96,4 +108,4 @@ name = 4
 println name.getClass()
 
 
-println userOne == testUser
+println userOne == testUser // in Groovy ==  means "equals"

@@ -1,0 +1,18 @@
+01- Basics
+
+Interfaces are needed in order to help implementation of distributed responsibility.
+Distribute responsibility over the methods - each method is responsible for some operation.
+
+in groovy package needs to be specified if it is contained in some  module  etc. /scripts  or /pl.training.groovy.bank
+
+def - used to specify variable of a dynamic type - we can change it by assigning a value of different type - e.g. int to string.
+
+if we define a type of variable directly like  String text, variable will maintain the type.
+
+groovy-doc - java-doc , based on the comments we can generate documentation. In order to do it ...
+
+hashCode - state of the object (field values ) is translated into one value - hashCode. It can be used in collections, allowing fast access to the elements in a collection - like index.
+especially useful when working on large collections
+
+equals - checks if two Objects are equal based on their state (values). We are not talking about references - we are not checking
+if that is the same object.

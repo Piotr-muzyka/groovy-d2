@@ -1,21 +1,25 @@
 package pl.training.groovy.bank.accounts
 
 import com.sun.istack.internal.logging.Logger
+import groovy.transform.TupleConstructor
 import pl.training.groovy.bank.BankException
 
 import java.util.logging.Level
+import java.util.logging.Logger
 
 /**
  * Created by PMUZYKA on 2017-10-03.
  */
+@TupleConstructor
 class TransactionLogger implements Accounts{
 
 
     // design pattern - decorator, proxy
 
     private Accounts accounts
-    private Logger logger = Logger.getLogger(getClass().name)
     private Closure<String> currencyFormatter
+    private Logger logger = Logger.getLogger(getClass().name)
+
 
     /*
      using contract we can use TransactionLogger by delegating accountService object from other classes. Therefore we can also
@@ -30,7 +34,7 @@ class TransactionLogger implements Accounts{
     void deposit(String accountNumber, Long funds) {
         process(accountNumber){ ->
             accounts.deposit(accountNumber, funds)
-            println "${accountNumber} <== ${currencyFormatter(funds)}"
+            logger.log(Level.INFO, "${accountNumber} <== ${currencyFormatter(funds)}")
         }
 
     }
@@ -38,7 +42,7 @@ class TransactionLogger implements Accounts{
     void withdraw(String accountNumber, Long funds) {
         process(accountNumber){ ->
             accounts.withdraw(accountNumber, funds)
-            println "${accountNumber} ==> ${currencyFormatter(funds)}"
+            logger.log(Level.INFO, "${accountNumber} ==> ${currencyFormatter(funds)}")
         }
 
     }

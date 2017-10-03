@@ -46,6 +46,8 @@ This is a trait use example.
 
 Generic types :  <> doesn't use specific variable type, e.g. present in Lists
 
+nullpointer exception - reference which points to an nonexisting Object
+
 TODO :
 RetroLambda
 Kotlin

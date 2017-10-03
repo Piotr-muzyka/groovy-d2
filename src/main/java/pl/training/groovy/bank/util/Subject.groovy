@@ -5,7 +5,7 @@ package pl.training.groovy.bank.util
  */
 trait Subject<E>{
 
-    protected Set<Observer> observers = []
+    private Set<Observer> observers = []
     //protected Set observers = [] as Set
 
     void addObserver(Observer<E> observer){

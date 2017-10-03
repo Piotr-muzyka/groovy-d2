@@ -1,12 +1,10 @@
 package pl.training.groovy.bank.accounts
 
 import groovy.transform.TupleConstructor
-import pl.training.groovy.bank.DepositObserver
+
 import pl.training.groovy.bank.accounts.generator.AccountNumberGenerator
 import pl.training.groovy.bank.accounts.repository.AccountsRepository
 import pl.training.groovy.bank.util.Subject
-
-import java.text.NumberFormat
 
 @TupleConstructor
 class AccountsService implements Accounts, Subject<Account> {
@@ -15,7 +13,6 @@ class AccountsService implements Accounts, Subject<Account> {
 
     private AccountsRepository accountsRepository
     private AccountNumberGenerator accountNumberGenerator
-    private Set<DepositObserver> depositObservers = []
 
     Account createAccount() {
         String accountNumber = accountNumberGenerator.next
@@ -24,21 +21,15 @@ class AccountsService implements Accounts, Subject<Account> {
     }
 
     void deposit(String accountNumber, Long funds) {
-        process(accountNumber) { account ->
+        process(accountNumber) { Account account ->
             account.deposit(funds)
-            checkDeposit(accountNumber,funds)
+            checkDeposit(account, funds)
         }
     }
 
-    void addDepositObserver(DepositObserver observer){
-        depositObservers += observer
-    }
-
-    private void checkDeposit(String accountNumber, Long funds){
-        if (funds >= DEPOSIT_LIMIT){
-            depositObservers.each { observer ->
-                observer.onBigDeposit(accountNumber, funds)
-            }
+    private void checkDeposit(Account account, Long deposit){
+        if (deposit >= DEPOSIT_LIMIT){
+            notifyObservers(account)
         }
     }
 

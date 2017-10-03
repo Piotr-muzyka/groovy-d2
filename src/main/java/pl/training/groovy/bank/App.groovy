@@ -25,13 +25,12 @@ class App {
         Accounts accountsService = new AccountsService(
                 accountsRepository: accountsRepository,
                 accountNumberGenerator: accountNumberGenerator)
-        DepositObserver observer = new DepositObserver() {
-            @Override
-            void onBigDeposit(String accountNumber, Long funds){
-                println "Deposit limit on account ${accountNumber}"
-            }
+        accountsService.addObserver{
+            println "Deposit limit on account: ${it.number}"
         }
-        accountsService.addDepositObserver(observer)
+        accountsService.addObserver{
+            println "Deposit info: ${it.number}"
+        }
         new TransactionLogger(accounts: accountsService, currencyFormatter: createFormatter)
     }
 

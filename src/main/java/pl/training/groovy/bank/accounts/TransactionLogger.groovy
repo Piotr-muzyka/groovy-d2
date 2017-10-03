@@ -15,6 +15,7 @@ class TransactionLogger implements Accounts{
 
     private Accounts accounts
     private Logger logger = Logger.getLogger(getClass().name)
+    private Closure<String> currencyFormatter
 
     /*
      using contract we can use TransactionLogger by delegating accountService object from other classes. Therefore we can also
@@ -29,12 +30,16 @@ class TransactionLogger implements Accounts{
     void deposit(String accountNumber, Long funds) {
         process(accountNumber){ ->
             accounts.deposit(accountNumber, funds)
-            println "${accountNumber} <== ${account.currencyFormatter(funds)}"
+            println "${accountNumber} <== ${currencyFormatter(funds)}"
         }
 
     }
 
     void withdraw(String accountNumber, Long funds) {
+        process(accountNumber){ ->
+            accounts.withdraw(accountNumber, funds)
+            println "${accountNumber} ==> ${currencyFormatter(funds)}"
+        }
 
     }
 

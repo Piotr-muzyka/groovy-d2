@@ -22,7 +22,7 @@ class AccountsService implements Accounts {
     void deposit(String accountNumber, Long funds) {
         process(accountNumber) { account ->
             account.deposit(funds)
-            account.log(funds)
+            println "${accountNumber} <== ${currencyFormatter(funds)}"
         }
     }
 
@@ -30,7 +30,7 @@ class AccountsService implements Accounts {
         process(accountNumber) { account ->
             account.checkFunds(funds)
             account.withdraw(funds)
-            account.log(funds)
+            println "${accountNumber} ==> ${currencyFormatter(funds)}"
         }
     }
 

@@ -4,11 +4,12 @@ import groovy.transform.TupleConstructor
 import pl.training.groovy.bank.DepositObserver
 import pl.training.groovy.bank.accounts.generator.AccountNumberGenerator
 import pl.training.groovy.bank.accounts.repository.AccountsRepository
+import pl.training.groovy.bank.util.Subject
 
 import java.text.NumberFormat
 
 @TupleConstructor
-class AccountsService implements Accounts {
+class AccountsService implements Accounts, Subject<Account> {
 
     private static final Long DEPOSIT_LIMIT = 10_000
 

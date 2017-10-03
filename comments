@@ -44,5 +44,8 @@ Observer will implement this method (e.g. bigDeposit).
 This is a trait use example.
 
 
+Generic types :  <> doesn't use specific variable type, e.g. present in Lists
+
+TODO :
 RetroLambda
 Kotlin

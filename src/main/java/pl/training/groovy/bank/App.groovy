@@ -1,6 +1,5 @@
 package pl.training.groovy.bank
 
-import com.sun.istack.internal.logging.Logger
 import pl.training.groovy.bank.accounts.Account
 import pl.training.groovy.bank.accounts.Accounts
 import pl.training.groovy.bank.accounts.AccountsService

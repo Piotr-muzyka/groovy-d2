@@ -9,10 +9,28 @@ def - used to specify variable of a dynamic type - we can change it by assigning
 
 if we define a type of variable directly like  String text, variable will maintain the type.
 
-groovy-doc - java-doc , based on the comments we can generate documentation. In order to do it ...
+groovy-doc - java-doc , based on the comments we can generate documentation. In order to do it we need to specify in
+CLI groovydoc /<class_path> /<directory_to_save_document>
+
 
 hashCode - state of the object (field values ) is translated into one value - hashCode. It can be used in collections, allowing fast access to the elements in a collection - like index.
 especially useful when working on large collections
 
 equals - checks if two Objects are equal based on their state (values). We are not talking about references - we are not checking
 if that is the same object.
+
+super - use closest parent method implementation. if we want to inherit a certain method implementation from our preceeder we use - super.super.super<...>
+
+private - field and methods are exclusive for the class where it is implemented
+
+protected - field and its methods are shared amongst the Class and classes which inherit from it
+
+polymorphism - using contracts /interface or abstract class we have different implementations of a method for a certain objects/ classes
+contracts help to generalize code.
+
+
+default methods in interfaces - can be used inside interfaces, default methods if implemented in inheriting class are ignored, if they are not present
+then a default method from interface is implemented in an intheriting class.
+
+Aggregation. composition / by setting a new fields using existing types we are using composition/aggregation.
+wzorce projektowe w OOP - gang of four

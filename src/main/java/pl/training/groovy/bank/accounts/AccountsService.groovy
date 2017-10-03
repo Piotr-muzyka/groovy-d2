@@ -25,16 +25,17 @@ class AccountsService implements Accounts {
     void deposit(String accountNumber, Long funds) {
         process(accountNumber) { account ->
             account.deposit(funds)
+            checkDeposit(accountNumber,funds)
         }
     }
 
     void addDepositObserver(DepositObserver observer){
-        depositObservers <= observer
+        depositObservers += observer
     }
 
     private void checkDeposit(String accountNumber, Long funds){
         if (funds >= DEPOSIT_LIMIT){
-            depositObservers.forEach { observer ->
+            depositObservers.each { observer ->
                 observer.onBigDeposit(accountNumber, funds)
             }
         }

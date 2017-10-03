@@ -26,6 +26,13 @@ class App {
         Accounts accountsService = new AccountsService(
                 accountsRepository: accountsRepository,
                 accountNumberGenerator: accountNumberGenerator)
+        DepositObserver observer = new DepositObserver() {
+            @Override
+            void onBigDeposit(String accountNumber, Long funds){
+                println "Deposit limit on account ${accountNumber}"
+            }
+        }
+        accountsService.addDepositObserver(observer)
         new TransactionLogger(accounts: accountsService, currencyFormatter: createFormatter)
     }
 
@@ -41,7 +48,7 @@ class App {
         //---------------------------------------------
         Account account = accounts.createAccount()
         accounts.deposit(account.number, 100_000_000)
-        accounts.withdraw(account.number, 100)
+        accounts.withdraw(account.number, 100_000)
         println account
     }
 

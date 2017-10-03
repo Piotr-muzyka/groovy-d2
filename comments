@@ -42,3 +42,7 @@ we have a list / map in which we keep observers,
 we implement three methods which will handle the list - attach, detach, notify (observer)
 Observer will implement this method (e.g. bigDeposit).
 This is a trait use example.
+
+
+RetroLambda
+Kotlin

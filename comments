@@ -34,3 +34,11 @@ then a default method from interface is implemented in an intheriting class.
 
 Aggregation. composition / by setting a new fields using existing types we are using composition/aggregation.
 wzorce projektowe w OOP - gang of four
+
+
+//  Observer design pattern in bank application
+
+we have a list / map in which we keep observers,
+we implement three methods which will handle the list - attach, detach, notify (observer)
+Observer will implement this method (e.g. bigDeposit).
+This is a trait use example.

@@ -51,6 +51,8 @@ nullpointer exception - reference which points to an nonexisting Object
 
 JDBC - connecting Java Projects with DBs. JDBC JAVA tutorialspoint - > instead of such "big implementations" we can use schema's like in PostgreAccountNumbergenerator
 
+Instead of using null - use Optional for fields which might not exist, not be present
+
 TODO :
 RetroLambda
 Kotlin

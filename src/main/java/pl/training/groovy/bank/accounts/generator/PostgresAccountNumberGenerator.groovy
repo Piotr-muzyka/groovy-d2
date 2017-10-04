@@ -29,13 +29,10 @@ class PostgresAccountNumberGenerator extends FakeAccountNumberGenerator {
         new Sql(dataSource).eachRow(SELECT_MAX_ACCOUNT_NUMBER, updateCounter) // we are referencing a method
     }
 
-
-    private Closure<Void> updateCounter = {
-        String lastAccountNumber = it(0) // it is a row , a list with values = on index 0 we have our number inside
+    private def updateCounter = {
+        String lastAccountNumber = it[0]
         if (lastAccountNumber) {
             counter = new AtomicLong(lastAccountNumber as Long)
-            // we are casting to Long, AtomicLong - synchronized long
         }
-
     }
 }

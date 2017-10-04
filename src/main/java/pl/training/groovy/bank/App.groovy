@@ -3,25 +3,37 @@ package pl.training.groovy.bank
 import pl.training.groovy.bank.accounts.Account
 import pl.training.groovy.bank.accounts.Accounts
 import pl.training.groovy.bank.accounts.AccountsService
-import pl.training.groovy.bank.accounts.TransactionLogger
+import pl.training.groovy.bank.accounts.logger.TransactionLogger
 import pl.training.groovy.bank.accounts.generator.AccountNumberGenerator
-import pl.training.groovy.bank.accounts.generator.FakeAccountNumberGenerator
+import pl.training.groovy.bank.accounts.generator.PostgresAccountNumberGenerator
 import pl.training.groovy.bank.accounts.repository.AccountsRepository
-import pl.training.groovy.bank.accounts.repository.HashMapAccountsRepository
+import com.zaxxer.hikari.HikariDataSource
+import org.postgresql.Driver as PostgreDriver
+import pl.training.groovy.bank.accounts.repository.PostgresAccountsRepository
 
+import javax.sql.DataSource
 import java.text.NumberFormat
 import java.util.logging.Level
 import java.util.logging.Logger
 class App {
 
-    private createFormatter = { funds ->
-        NumberFormat formatter = NumberFormat.getCurrencyInstance()
-        formatter.format(funds)
-    }
+    private static final Long CURRENCY_UNIT = 100
 
+    private def currencyFormatter = {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance()
+        formatter.format((it as Double) / CURRENCY_UNIT)
+    }
     private createAccounts() {
-        AccountsRepository accountsRepository = new HashMapAccountsRepository()
-        AccountNumberGenerator accountNumberGenerator = new FakeAccountNumberGenerator()
+        DataSource dataSource = new HikariDataSource()
+        dataSource.jdbcUrl = 'jdbc:postgresql://localhost:5432/bank'
+        dataSource.username = 'postgres'
+        dataSource.password = 'admin'
+        dataSource.driverClassName = PostgreDriver.class.name
+
+//        AccountsRepository accountsRepository = new HashMapAccountsRepository()
+//        AccountNumberGenerator accountNumberGenerator = new FakeAccountNumberGenerator()
+        AccountsRepository accountsRepository = new PostgresAccountsRepository(dataSource)
+        AccountNumberGenerator accountNumberGenerator = new PostgresAccountNumberGenerator(dataSource)
         Accounts accountsService = new AccountsService(
                 accountsRepository: accountsRepository,
                 accountNumberGenerator: accountNumberGenerator)
@@ -31,7 +43,7 @@ class App {
         accountsService.addObserver{
             println "Deposit info: ${it.number}"
         }
-        new TransactionLogger(accounts: accountsService, currencyFormatter: createFormatter)
+        new TransactionLogger(accounts: accountsService, currencyFormatter: currencyFormatter)
     }
 
     static void main(String[] args) {

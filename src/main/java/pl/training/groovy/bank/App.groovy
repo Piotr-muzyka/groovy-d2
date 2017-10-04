@@ -13,12 +13,16 @@ class App {
 
     static void main(String[] args) {
         Logger.getLogger(TransactionLogger.class.name).setLevel(Level.INFO)
+
         AccountsFactory accountsFactory = new ProductionAccountsFactory()
         Accounts accounts = accountsFactory.create()
         //---------------------------------------------
         Account account = accounts.createAccount()
         accounts.deposit(account.number, 100_000_000)
         accounts.withdraw(account.number, 100)
+
+        FileDataImporter dataImporter = new FileDataImporter(accounts: accounts)
+        dataImporter.importData('data.txt')
     }
 
 }

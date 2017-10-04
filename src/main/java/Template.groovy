@@ -1,0 +1,28 @@
+/**
+ * Created by PMUZYKA on 2017-10-04.
+ */
+class Template {
+
+    private static final def EXPRESSION_START  = /\$\{/
+    private static final def EXPRESSION_END = /}/
+
+    private String textWithExpressions
+
+    Template(String textWithExpressions){
+        this.textWithExpressions = textWithExpressions
+
+    }
+
+    String evaluate(Map<String, String> parameters){
+        String result = textWithExpressions
+        for (parameter in parameters){
+            result = result.replaceAll(createExpression(parameter.key), parameter.value)
+        }
+        return result
+    }
+
+    private String createExpression(String name){
+        EXPRESSION_START + name + EXPRESSION_END
+    }
+
+}

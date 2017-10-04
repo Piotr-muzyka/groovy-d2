@@ -17,7 +17,7 @@ class PostgresTransactionHistoryLogger implements Accounts{
     private Accounts accounts
     private Sql sql
 
-    private static final String INSERT_TRANSACTION_INFO = "insert into transactions (number,balance,timestamp,type) values(:number,:balance,:timestamp,:type)"
+    private static final String INSERT_TRANSACTION_INFO = 'insert into transactions (number,balance,timestamp,type) values(:number,:balance,:timestamp,:type)'
 
     PostgresTransactionHistoryLogger(Accounts accounts, DataSource dataSource){
         this.accounts = accounts // this points to the current constructor accounts instance

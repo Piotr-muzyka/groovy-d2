@@ -48,6 +48,9 @@ Generic types :  <> doesn't use specific variable type, e.g. present in Lists
 
 nullpointer exception - reference which points to an nonexisting Object
 
+
+JDBC - connecting Java Projects with DBs. JDBC JAVA tutorialspoint - > instead of such "big implementations" we can use schema's like in PostgreAccountNumbergenerator
+
 TODO :
 RetroLambda
 Kotlin

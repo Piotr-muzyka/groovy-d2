@@ -53,6 +53,22 @@ JDBC - connecting Java Projects with DBs. JDBC JAVA tutorialspoint - > instead o
 
 Instead of using null - use Optional for fields which might not exist, not be present
 
+factory method - > abstract factory
+
+factory method
+
+Product Accounts
+ConcreteProduct PostgreLogger / logger,
+
+Creator AccountsFactory interface
+Concrete creator - Test/Production Factory
+
+
+Abstract factory :
+n abstract products - abstract factory which creates a whole family of products for a certain client
 TODO :
 RetroLambda
 Kotlin
+
+
+sourcemaking.com - design patterns, examples

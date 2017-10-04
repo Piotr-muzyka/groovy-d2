@@ -1,9 +1,8 @@
 package pl.training.groovy.bank.accounts.logger
 
-import com.sun.istack.internal.logging.Logger
 import groovy.transform.TupleConstructor
 import pl.training.groovy.bank.BankException
-import pl.training.groovy.bank.accounts.Account
+import pl.training.groovy.bank.accounts.model.Account
 import pl.training.groovy.bank.accounts.Accounts
 
 import java.util.logging.Level

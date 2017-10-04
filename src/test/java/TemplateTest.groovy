@@ -30,7 +30,7 @@ class TemplateTest {
 
     @Test
     void shouldIgnoreExtraParameters(){
-        String result = template.evaluate(parameters, [age: '12'])
+        parameters['age'] = '12'
         assertEquals(EXPECTED_RESULT, template.evaluate(parameters))
     }
 }

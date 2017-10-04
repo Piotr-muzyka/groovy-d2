@@ -12,6 +12,8 @@ class TemplateTest {
     private static final String EXPECTED_RESULT = 'My name is Jan Kowalski'
 
     private Template template = new Template('My name is ${firstName} ${lastName}')
+    private Map<String, String> parameters = [firstName: 'Jan', lastName: 'Kowalski']
+
     // Template is safe (won't be modified by the tests since Junit is creating a separate object for each test)
 
     @Test
@@ -28,7 +30,7 @@ class TemplateTest {
 
     @Test
     void shouldIgnoreExtraParameters(){
-        String result = template.evaluate([firstName: 'Jan', lastName: 'Kowalski', age: '12'])
-        assertEquals('My name is Jan Kowalski',result)
+        String result = template.evaluate(parameters, [age: '12'])
+        assertEquals(EXPECTED_RESULT, template.evaluate(parameters))
     }
 }

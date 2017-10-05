@@ -66,6 +66,14 @@ Concrete creator - Test/Production Factory
 
 Abstract factory :
 n abstract products - abstract factory which creates a whole family of products for a certain client
+
+Unit tests - must be isolated from each other , fast and oriented on a particular method functionality
+
+mockito - library which helps to imitate certain objects, and then run tests on it.
+http://site.mockito.org/
+
+spock
+
 TODO :
 RetroLambda
 Kotlin
